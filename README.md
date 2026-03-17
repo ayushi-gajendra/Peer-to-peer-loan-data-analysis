@@ -16,6 +16,8 @@ The first step was to analyze the frequency of different loan grades (A through 
 
 #### Visualisation: Loan Grade Frequency
 
+![Loan Grade Frequency](loan_column_chart_minimal.png)
+
 *Insight: B-grade and C-grade loans are the most common, while grades E, F, and G are rare, suggesting a conservative lending threshold for the startup to model.*
 
 -----
@@ -30,6 +32,8 @@ To identify high-opportunity regions, I analyzed the average loan amounts across
 
 #### Visualisation: State-Level Grade Distribution
 
+![Loan Grade Frequency](grouped_by_state_and_grade.png)
+
 *Insight: Regional differences are clear; for example, Hawaii shows a significantly different risk-to-loan-amount profile compared to Alaska.*
 
 -----
@@ -42,6 +46,8 @@ In this phase, I explored whether the composition of homeownership (Rent, Mortga
   * **Compositional Analysis:** Identified how much of the total loan volume in each grade comes from specific borrower profiles.
 
 #### Visualisation: Loan Composition by Homeownership
+
+<img src="loans_by_grades_and_homeownership.png" width="500" alt="Loan Composition by Homeownership">
 
 *Insight: The proportion of renters increases significantly as we move toward higher-risk grades (C, D, and E), suggesting homeownership is a strong indicator of financial stability.*
 
@@ -56,6 +62,8 @@ Finally, I investigated the correlation between a borrower’s annual income and
   * **Outlier Handling:** Focused the plot limits to prevent extreme individual outliers from skewing the visual representation of the general population.
 
 #### Visualisation: Annual Income Correlation
+
+![Annual Income Correlation](annual_income_vs_total_credit_limit.png)
 
 *Insight: While income is a predictor, the variance suggests that the startup needs secondary variables (like the grades analyzed in Phase 1) to accurately set credit limits.*
 
