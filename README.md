@@ -1,5 +1,10 @@
 # 💳 LendingTree: Peer-to-Peer Loan Risk & EDA
 
+![Financial Analytics](https://img.shields.io/badge/Analysis-Exploratory%20Data%20Analysis-red?style=for-the-badge)
+![Domain](https://img.shields.io/badge/Domain-FinTech%20%26%20Lending-blue?style=for-the-badge)
+![Method](https://img.shields.io/badge/Method-Risk%20Segmentation-orange?style=for-the-badge)
+![Tools](https://img.shields.io/badge/Tools-Python%20%26%20Pandas-success?style=for-the-badge&logo=python&logoColor=white)
+
 ## 📌 Project Overview
 
 This project simulates a real-world scenario for a FinTech startup looking to disrupt the peer-to-peer lending market. Using a dataset from **LendingTree**, I performed an Exploratory Data Analysis (EDA) to develop a state-of-the-art risk management strategy. The goal was to identify patterns in borrower behavior, income-to-credit correlations, and geographical risk factors to guide lending decisions across the United States.
