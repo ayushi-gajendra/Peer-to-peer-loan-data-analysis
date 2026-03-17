@@ -6,92 +6,71 @@ This project simulates a real-world scenario for a FinTech startup looking to di
 
 -----
 
-## 🏗️ Phase 1: Income & Credit Limit Correlation
+## 🏗️ Phase 1: Loan Grade Distribution (Scenario 1)
 
-The first step was to determine if a borrower's annual income is a reliable predictor of their total credit limit. This is foundational for setting automated loan approval thresholds.
+The first step was to analyze the frequency of different loan grades (A through G) assigned by LendingTree. This helps understand the competitor's risk appetite.
 
-  * **Statistical Thresholding:** Identified that borrowers with an annual income above **$170,000** represent the top 5% of the dataset.
-  * **Outlier Management:** Applied axis limits to focus on the core population (income under $500k) to prevent extreme outliers from skewing the strategy.
-  * **Visualization:** A scatter plot with an annotation for the 95th percentile income threshold.
+  * **Double Encoding:** Created a bar chart using a color gradient (green to red) to represent risk visually.
+  * **Annotations:** Added specific notes to highlight the "default drop-off" point below grade D.
+  * **Logic:** Applied `sort_index()` to ensure the risk grades were displayed in their logical order (A to G).
 
-#### Visualisation: Income vs. Credit Limit
+#### Visualisation: Loan Grade Frequency
 
-*Insight: While a positive correlation exists, the high density of points at lower income levels suggests that income alone cannot be the sole factor for high credit limits.*
-
------
-
-## 🔍 Phase 2: Risk Grading & Homeownership
-
-To build a "risk-aware" product, I segmented the data by loan grades (A through G) and homeownership status.
-
-  * **Multi-Dimensional Analysis:** Analyzed how homeownership (Mortgage, Rent, Own) varies across different credit risk grades.
-  * **Findings:** Borrowers with mortgages are consistently more prevalent in higher-grade (lower risk) categories, suggesting higher financial stability.
-
-#### Visualisation: Loan Grades & Homeownership
-
-*Insight: High-risk grades (E, F, G) show a higher proportion of renters compared to Grade A, providing a clear signal for the startup's risk model.*
+*Insight: B-grade and C-grade loans are the most common, while grades E, F, and G are rare, suggesting a conservative lending threshold for the startup to model.*
 
 -----
 
-## 🗺️ Phase 3: Regional Risk Analysis
+## 🔍 Phase 2: Regional Loan Analysis (Scenario 2)
 
-A state-by-state analysis was performed to identify geographical clusters of high-risk or high-opportunity borrowers.
+To identify high-opportunity regions, I analyzed the average loan amounts across the top three states (e.g., Alaska, DC, Hawaii) segmented by grade.
 
-  * **Segmentation:** Grouped data by US State and Loan Grade.
-  * **Logic:** Identified specific states where "Grade A" loans are dominant versus states with higher default risks.
+  * **Multi-Index Aggregation:** Utilized `groupby` on both State and Grade.
+  * **Unstacking:** Used the `unstack()` method to pivot the data into a structure suitable for a grouped bar chart.
+  * **Visual Optimization:** Moved the legend outside the chart area to ensure clear readability of the data clusters.
 
 #### Visualisation: State-Level Grade Distribution
 
-*Insight: This regional heatmap/bar chart allows the startup to tailor interest rates based on the economic stability of specific geographic zones.*
+*Insight: Regional differences are clear; for example, Hawaii shows a significantly different risk-to-loan-amount profile compared to Alaska.*
 
 -----
 
-## 📊 Phase 4: Loan Purpose & Volume
+## 🏠 Phase 3: Homeownership & Risk Profile (Scenario 3)
 
-Understanding *why* people borrow is as important as *how much* they borrow. I analyzed loan counts across different categories to identify market demand.
+In this phase, I explored whether the composition of homeownership (Rent, Mortgage, Own) changes based on the loan's risk grade.
 
-  * **Categorization:** Segmented loans by purpose (Debt Consolidation, Credit Card, Home Improvement, etc.).
-  * **Visual Optimization:** Created a refined column chart to highlight the primary drivers of loan applications.
+  * **Stacked Bar Charts:** Created a 100% stacked column chart to compare proportions rather than raw counts.
+  * **Compositional Analysis:** Identified how much of the total loan volume in each grade comes from specific borrower profiles.
 
-#### Visualisation: Loan Purpose Volume
+#### Visualisation: Loan Composition by Homeownership
 
-*Insight: Debt consolidation remains the primary driver of loan requests, suggesting the "disruptor" product should focus on streamlined balance transfer features.*
-
------
-
-## 🛠️ Technical Competencies Demonstrated
-
-  * **Advanced Data Visualisation:** Using `plt.annotate`, `axvline`, and custom styling to make charts "boardroom ready."
-  * **Risk Segmentation:** Applying financial logic (95th percentile, grading) to raw data.
-  * **Data Cleaning & Filtering:** Handling large-scale financial datasets with Python.
-  * **Business Storytelling:** Moving from code to strategic recommendations for a hypothetical startup.
+*Insight: The proportion of renters increases significantly as we move toward higher-risk grades (C, D, and E), suggesting homeownership is a strong indicator of financial stability.*
 
 -----
 
-## 🧠 Strategic Takeaway
+## 📈 Phase 4: Income vs. Credit Limit (Scenario 4)
 
-This EDA proves that a successful risk management strategy must be **multidimensional**. By combining income thresholds, homeownership stability, and geographic trends, the startup can minimize defaults while maximizing market share in high-demand categories like debt consolidation.
+Finally, I investigated the correlation between a borrower’s annual income and their total credit limit.
+
+  * **Correlation Analysis:** Identified a moderate Pearson correlation of **0.55**.
+  * **Quantile Cutoffs:** Used a vertical line (`axvline`) to mark the **95th percentile**, identifying borrowers making above $170,000.
+  * **Outlier Handling:** Focused the plot limits to prevent extreme individual outliers from skewing the visual representation of the general population.
+
+#### Visualisation: Annual Income Correlation
+
+*Insight: While income is a predictor, the variance suggests that the startup needs secondary variables (like the grades analyzed in Phase 1) to accurately set credit limits.*
 
 -----
 
-## 🚀 How to Run
+## 🛠️ Technical Competencies
 
-1.  Clone this repository.
-2.  Install dependencies: `pip install pandas matplotlib seaborn`.
-3.  Open `Lendingtree-Loan-data-analysis.ipynb` and run the cells.
+  * **Advanced Visualisation:** `plt.annotate`, `unstack()`, and 100% stacked charts.
+  * **Financial Risk Logic:** Understanding credit grades and debt-to-income indicators.
+  * **Data Cleaning:** Managing multi-index dataframes and handling missing values (`NaN`) in unstacked data.
 
 -----
 
 ## 🎓 Project Credits
 
-This analysis was developed as part of a Deeplearning Data Analytics course focused on applying **Exploratory Data Analysis** to solve complex business problems in the financial services sector.
+This analysis was developed as part of a specialized Deeplearning's Data Analytics course. It focuses on using Exploratory Data Analysis to solve complex business problems in the financial services sector.
 
-### Author
-
-**Ayushi Gajendra**
-*Data Analyst | Former EdTech Co-Founder*
-[LinkedIn](https://www.google.com/search?q=https://www.linkedin.com/in/ayushi-gajendra/) 
-
------
-
-**Next Step:** Would you like me to help you create a **Summary Table** for this README that compares the "Average Interest Rate" across different Loan Grades?
+### 🔗 Connect with me: [LinkedIn](https://www.google.com/search?q=https://www.linkedin.com/in/ayushi-gajendra/)
